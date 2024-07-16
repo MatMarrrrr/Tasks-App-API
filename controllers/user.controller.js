@@ -18,7 +18,7 @@ const login = async (req, res) => {
     const userData = await UserService.loginUser(email, password);
     res.status(200).json(userData);
   } catch (error) {
-    res.status(401).json({ message: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
