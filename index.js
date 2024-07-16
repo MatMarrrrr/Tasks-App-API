@@ -11,10 +11,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to Tasks API');
 });
 
-app.post('/test', (req, res) => {
-  res.send('Welcome to Tasks API');
-});
-
 const userRouter = require('./routes/user.route');
 
 app.use("/users", userRouter);
