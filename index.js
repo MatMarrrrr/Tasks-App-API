@@ -1,17 +1,23 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const connectDB = require('./config/database');
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/database");
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Tasks API');
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Tasks API");
 });
 
-const userRouter = require('./routes/user.route');
+const userRouter = require("./routes/user.route");
 
 app.use("/users", userRouter);
 
@@ -20,9 +26,9 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-try{
+try {
   connectDB();
-}catch(error){
-  console.error('Failed to connect to MongoDB:', error);
+} catch (error) {
+  console.error("Failed to connect to MongoDB:", error);
   process.exit(1);
 }
