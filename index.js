@@ -1,11 +1,15 @@
 const express = require("express");
 const cors = require('cors');
 const dotenv = require("dotenv");
-const connectDB = require("./config/database");
-
 dotenv.config();
-
+const connectDB = require("./config/database");
 const app = express();
+
+//========= Import routes =========//
+const userRouter = require("./routes/user.route");
+const taskRouter = require('./routes/task.route');
+
+//========= Middleware =========//
 app.use(express.json());
 
 app.use(
@@ -14,13 +18,14 @@ app.use(
   })
 );
 
+//========= Define routes =========//
 app.get("/", (req, res) => {
   res.send("Welcome to Tasks API");
 });
-
-const userRouter = require("./routes/user.route");
-
-app.use("/users", userRouter);
+const apiRouter = express.Router();
+apiRouter.use('/user', userRouter);
+apiRouter.use('/tasks', taskRouter);
+app.use('/api', apiRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

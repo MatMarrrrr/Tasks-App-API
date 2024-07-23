@@ -1,4 +1,4 @@
-const UserService = require('../services/user.service');
+const UserService = require("../services/user.service");
 
 const register = async (req, res) => {
   const { email, password } = req.body;
@@ -22,4 +22,7 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+module.exports = {
+  register,
+  login,
+};
