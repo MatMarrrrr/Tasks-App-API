@@ -15,7 +15,7 @@ const getTasks = async (req, res) => {
     const tasks = await taskService.getTasksByUser(req.user._id);
     res.status(200).json(tasks);
   } catch (error) {
-    res.status400().json({ error: error.message });
+    res.status(400).json({ message: error.message });
   }
 };
 
