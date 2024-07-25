@@ -30,7 +30,7 @@ class TaskService {
     const tasks = await Task.find({ user: userId });
 
     if (!tasks.length) {
-      throw new Error("No tasks found for this user");
+      return {};
     }
 
     return tasks.map((task) => ({
