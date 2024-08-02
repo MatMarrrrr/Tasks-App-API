@@ -56,4 +56,5 @@ module.exports = {
   getTasks,
   updateTask,
   deleteTask,
+  getTasksByGroup,
 };
