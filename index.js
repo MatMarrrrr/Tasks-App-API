@@ -8,6 +8,7 @@ const app = express();
 //========= Import routes =========//
 const userRouter = require("./routes/user.route");
 const taskRouter = require('./routes/task.route');
+const groupRouter = require('./routes/group.route');
 
 //========= Middleware =========//
 app.use(express.json());
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 const apiRouter = express.Router();
 apiRouter.use('/user', userRouter);
 apiRouter.use('/tasks', taskRouter);
+apiRouter.use('/groups', groupRouter);
 app.use('/api', apiRouter);
 
 const PORT = process.env.PORT || 3000;
