@@ -11,6 +11,14 @@ const taskSchema = new Schema({
     ref: "User",
     required: true,
   },
+  group: {
+    type: Schema.Types.ObjectId,
+    ref: "Group",
+  },
+  lastEditedBy: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 module.exports = mongoose.model("Task", taskSchema);
