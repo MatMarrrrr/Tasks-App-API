@@ -7,6 +7,16 @@ const GroupService = {
     return group;
   },
 
+  async getGroups(userId, all = false) {
+    let groups;
+    if (all) {
+      groups = await Group.find();
+    } else {
+      groups = await Group.find({ members: userId });
+    }
+    return groups;
+  },
+
   async updateGroup(id, name, userId) {
     const group = await Group.findById(id);
     if (!group) {
@@ -49,10 +59,12 @@ const GroupService = {
     if (!group) {
       throw new Error("Group not found");
     }
-    group.members = group.members.filter((memberId) => memberId.toString() !== userId.toString());
+    group.members = group.members.filter(
+      (memberId) => memberId.toString() !== userId.toString()
+    );
     await group.save();
     return group;
-  }
+  },
 };
 
 module.exports = GroupService;

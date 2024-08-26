@@ -12,6 +12,18 @@ const createGroup = async (req, res) => {
   }
 };
 
+const getGroups = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const all = req.query.all === "true";
+
+    const groups = await GroupService.getGroups(userId, all);
+    res.status(200).json(groups);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const updateGroup = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
@@ -61,6 +73,7 @@ const removeUserFromGroup = async (req, res) => {
 
 module.exports = {
   createGroup,
+  getGroups,
   updateGroup,
   deleteGroup,
   addUserToGroup,

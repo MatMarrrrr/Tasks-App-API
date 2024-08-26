@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   createGroup,
+  getGroups,
   updateGroup,
   deleteGroup,
   addUserToGroup,
@@ -10,6 +11,7 @@ const {
 const { protect } = require("../middlewares/authMiddleware");
 
 router.post("/", protect, createGroup);
+router.get("/", protect, getGroups);
 router.put("/:id", protect, updateGroup);
 router.delete("/:id", protect, deleteGroup);
 router.post("/:groupId/addUser", protect, addUserToGroup);
